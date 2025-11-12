@@ -1,3 +1,8 @@
+# =========================================================
+# Assignment 01 – A* Search Algorithm (CSE422)
+# Question PDF: https://github.com/Aryan422/Docs/Assignment01_(A-Search).pdf
+# =========================================================
+
 import sys, heapq
 input = sys.stdin.readline
 
@@ -9,7 +14,6 @@ def in_bounds(r, c, n, m):
 
 #Reconstruct Path from Parents
 #sr --> start row, gc --> goal column
-
 def reconstruct_path(parent, sr, sc, gr, gc):
     moves = []
     row, col = gr, gc
