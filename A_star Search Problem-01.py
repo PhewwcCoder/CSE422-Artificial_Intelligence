@@ -1,5 +1,5 @@
 # =========================================================
-# Question PDF: https://github.com/PhewwcCoder/CSE422-Artificial_Intelligence/blob/main/Docs/Assignement01_(A-%20Search)%20-%20Copy.pdf
+# Question PDF: https://github.com/PhewwcCoder/CSE422-Artificial_Intelligence/blob/main/Docs/Q1_(A%20star%20Search).pdf
 # =========================================================
 
 import sys, heapq
