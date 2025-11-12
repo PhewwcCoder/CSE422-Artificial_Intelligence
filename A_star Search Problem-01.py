@@ -1,6 +1,6 @@
 # =========================================================
 # Assignment 01 – A* Search Algorithm (CSE422)
-# Question PDF: https://github.com/Aryan422/Docs/Assignment01_(A-Search).pdf
+# Question PDF: https://github.com/PhewwcCoder/CSE422-Artificial_Intelligence/blob/main/Docs/Assignement01_(A-%20Search)%20-%20Copy.pdf
 # =========================================================
 
 import sys, heapq
