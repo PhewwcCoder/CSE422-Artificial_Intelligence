@@ -1,11 +1,11 @@
 # =========================================================
-# Assignment 01 – A* Search Algorithm (CSE422)
 # Question PDF: https://github.com/PhewwcCoder/CSE422-Artificial_Intelligence/blob/main/Docs/Assignement01_(A-%20Search)%20-%20Copy.pdf
 # =========================================================
 
 import sys, heapq
 input = sys.stdin.readline
 
+#PART-01
 def manhattan_distance(r1, c1, r2, c2):
     return abs(r1-r2)+abs(c1-c2)
 
