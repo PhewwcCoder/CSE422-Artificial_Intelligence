@@ -2,7 +2,8 @@
 # Question PDF: https://github.com/PhewwcCoder/CSE422-Artificial_Intelligence/blob/main/Docs/Q1_(A%20star%20Search).pdf
 # =========================================================
 
-import sys, heapq
+import sys, heapq   #heapq always pops the smallest priority item, which is exactly what A* needed.
+from collections import deque
 input = sys.stdin.readline
 
 #PART-01
@@ -24,7 +25,7 @@ def reconstruct_path(parent, sr, sc, gr, gc):
     moves.reverse()
     return "".join(moves)
 
-def main():
+def PART1():
     n,m = map(int, input().split())
     a,b = map(int, input().split())
     c,d = map(int, input().split())
@@ -59,7 +60,7 @@ def main():
         f, tb, row, col = heapq.heappop(pq)
         if visited[row][col]:
             continue
-        visited[row][col] == True
+        visited[row][col] = True
 
         if row == c and col == d:
             path = reconstruct_path(parent,a,b,c,d)
@@ -85,6 +86,85 @@ def main():
                 heapq.heappush(pq, (f2, tie_breaker, child_row, child_col))       
     print(-1)
 
+
+def PART2():
+    n,m = map(int, input().split()) #n=number of vertices, m=number of edges
+    a,b = map(int, input().split())
+    heuristic_list = [0]*(n+1)
+    for i in range(n):
+        x,y = map(int, input().split())
+        heuristic_list[x] = y
+
+    #Building adjacency list for undirected graph
+    adj_list = [[] for _ in range(n+1)]
+    for j in range(m):
+        u,v = map(int, input().split())
+        adj_list[u].append(v)
+        adj_list[v].append(u)
+
+    #BFS from goal node to compute true distances dist[v] to goal
+    INF = 10**18
+    dist = [INF]*(n+1)
+
+    dist[b] = 0
+    dq = deque()    #Queue object created
+    dq.append(b)    #source node added(for this context--> goal node)
+
+    while dq:
+        u = dq.popleft()    #deque
+        for v in adj_list[u]:   #check the neighbors
+            if dist[v] == INF:  #If not visited then visit the node
+                dist[v] = dist[u]+1
+                dq.append(v)
+
+    #Checking admissibility
+    bad_nodes = []  #Storing nodes which arent admissible
+    for v in range(1,n+1):
+        if dist[v] == INF:
+            continue
+        if heuristic_list[v] > dist[v]:
+            bad_nodes.append(v)
+
+    if not bad_nodes:
+        print(1)
+    else:
+        print(0)
+        print('Here nodes', *bad_nodes, 'are not admissible')
+
 if __name__ == "__main__":
-    main()
+    PART1()
+    PART2()
+
     
+'''    
+Example Sample-01(for PART-2)
+5 5
+2 4
+1 0
+2 2
+3 2
+4 0
+5 1
+5 2
+2 3
+1 4
+4 5
+5 3
+
+Example Sample-02
+6 7
+1 6
+1 6
+2 4
+3 2
+4 5
+5 2
+6 0
+1 2
+2 3
+3 6
+1 4
+4 5
+5 6
+3 5
+'''
